@@ -11,7 +11,6 @@ export class Order {
         RESERVING: (sInput) => {
           let aReturn = [];
           this.stateCur = this.OrderState.ITEM_NR;
-          // this.isDone = true;
           if (sInput.toLowerCase().startsWith('y')) {
             aReturn.push('Please type the item number you want: (1/2/3)');
             aReturn.push('1. Cheese Burger');
@@ -58,6 +57,7 @@ export class Order {
           if (sInput.toLowerCase().startsWith('y')) {
             aReturn.push("Great choice! Your total is $14.99.")
             aReturn.push("Would you like to pay-in-full or with installments? (p/i)")
+            this.stateCur = this.OrderState.PAYMENT;
           } else {
             aReturn.push("Are you sure? It's only $3.99 :(")
             aReturn.push("Great! Would you like to make it a set for $3.99? (y/n)")
@@ -68,8 +68,11 @@ export class Order {
           let aReturn = [];
           if (sInput.toLowerCase().startsWith('p')) {
             aReturn.push("Perfect you're paying in full for your $14.99 meal.")
-            aReturn.push("All set, ")
+          } else if (sInput.toLowerCase().startsWith('i')) {
+            aReturn.push("Perfect you're paying in installments of 48 months (at 15% interest) for your $14.99 meal.")
           }
+          aReturn.push("All set, you order will be ready soon, please come again!")
+          this.isDone = true;
           return aReturn;
         }
       };
