@@ -26,8 +26,8 @@ export class Order {
             // aReturn.push(`Please pick it up at 123 Dalhousie St., Acton before ${d.toTimeString()}`);
             // }
           } else {
-            aReturn.push("Thanks for trying our reservation system");
-            aReturn.push("Maybe next time")
+            aReturn.push("Thanks for trying our reservation system, come again!");
+            this.isDone = true;
           }
           return aReturn;
         },
@@ -35,12 +35,15 @@ export class Order {
           let aReturn = [];
           if (sInput == 1) {
             aReturn.push("You've chosen 1. Cheese Burger!")
+            aReturn.push("Great! Would you like to make it a set for $3.99? (y/n)")
             this.stateCur = this.OrderState.UP_SELL;
           } else if (sInput == 2) {
             aReturn.push("You've chosen 2. Sandwich w/ Bacon!")
+            aReturn.push("Great! Would you like to make it a set for $3.99? (y/n)")
             this.stateCur = this.OrderState.UP_SELL;
           } else if (sInput == 3) {
             aReturn.push("You've chosen 3. Salad & Veggies!")
+            aReturn.push("Great! Would you like to make it a set for $3.99? (y/n)")
             this.stateCur = this.OrderState.UP_SELL;
           } else {
             aReturn.push("Sorry, your item isn't recognised. Please enter again.");
@@ -49,7 +52,6 @@ export class Order {
             aReturn.push('2. Sandwich w/ Bacon');
             aReturn.push('3. Salad & Veggies');
           }
-          aReturn.push("Great! Would you like to make it a set for $3.99? (y/n)")
           return aReturn;
         },
         UP_SELL: (sInput) => {
@@ -68,11 +70,15 @@ export class Order {
           let aReturn = [];
           if (sInput.toLowerCase().startsWith('p')) {
             aReturn.push("Perfect you're paying in full for your $14.99 meal.")
+            aReturn.push("All set, you order will be ready soon, please come again!")
+            this.isDone = true;
           } else if (sInput.toLowerCase().startsWith('i')) {
             aReturn.push("Perfect you're paying in installments of 48 months (at 15% interest) for your $14.99 meal.")
+            aReturn.push("All set, you order will be ready soon, please come again!")
+            this.isDone = true;
+          } else {
+            aReturn.push("Payment method not recognised. Would you like to pay-in-full or with installments? (p/i)")
           }
-          aReturn.push("All set, you order will be ready soon, please come again!")
-          this.isDone = true;
           return aReturn;
         }
       };
