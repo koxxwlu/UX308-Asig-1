@@ -57,7 +57,7 @@ export class Order {
         UP_SELL: (sInput) => {
           let aReturn = [];
           if (sInput.toLowerCase().startsWith('y')) {
-            aReturn.push("Great choice! Your total is $14.99.")
+            aReturn.push("Great choice! Your total is $18.99.")
             aReturn.push("Would you like to pay-in-full or with installments? (p/i)")
             this.stateCur = this.OrderState.PAYMENT;
           } else {
@@ -69,11 +69,11 @@ export class Order {
         PAYMENT: (sInput) => {
           let aReturn = [];
           if (sInput.toLowerCase().startsWith('p')) {
-            aReturn.push("Perfect you're paying in full for your $14.99 meal.")
+            aReturn.push("Perfect you're paying in full for your $18.99 meal.")
             aReturn.push("All set, you order will be ready soon, please come again!")
             this.isDone = true;
           } else if (sInput.toLowerCase().startsWith('i')) {
-            aReturn.push("Perfect you're paying in installments of 48 months (at 15% interest) for your $14.99 meal.")
+            aReturn.push("Perfect you're paying in installments of 48 months (at 21.99% interest) for your $18.99 meal.")
             aReturn.push("All set, you order will be ready soon, please come again!")
             this.isDone = true;
           } else {
